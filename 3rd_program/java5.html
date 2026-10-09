@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complete Form Validation</title>
+
+    <script>
+        function validateForm() {
+
+            let email = document.getElementById("email").value;
+            let password =
+                document.getElementById("password").value;
+
+            let confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+            let pattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (email == "") {
+                alert("Email cannot be empty");
+                return false;
+            }
+
+            if (!pattern.test(email)) {
+                alert("Enter a valid email address");
+                return false;
+            }
+
+            if (password == "") {
+                alert("Password cannot be empty");
+                return false;
+            }
+
+            if (password.length < 8) {
+                alert("Password must contain at least 8 characters");
+                return false;
+            }
+
+            if (password != confirmPassword) {
+                alert("Passwords do not match");
+                return false;
+            }
+
+            alert("Registration Successful!");
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+
+    <h2>Registration Form</h2>
+
+    <form onsubmit="return validateForm()">
+
+        <label>Email:</label>
+        <input type="text" id="email">
+        <br><br>
+
+        <label>Password:</label>
+        <input type="password" id="password">
+        <br><br>
+
+        <label>Confirm Password:</label>
+        <input type="password" id="confirmPassword">
+        <br><br>
+
+        <input type="submit" value="Register">
+
+    </form>
+
+</body>
+</html>

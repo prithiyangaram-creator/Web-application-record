@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Example 4</title>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+
+<form id="myForm">
+
+    <label>Name:</label>
+    <input type="text" id="username">
+
+    <br><br>
+
+    <label>Email:</label>
+    <input type="email" id="email">
+
+    <br><br>
+
+    <button type="submit">Register</button>
+
+</form>
+
+<p id="message"></p>
+
+<script>
+    const form = document.getElementById("myForm");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+
+        if (username === "" || email === "") {
+            message.textContent = "Please fill in all fields.";
+            message.style.color = "red";
+        } else {
+            message.textContent =
+                "Registration successful! Welcome " + username;
+            message.style.color = "green";
+        }
+    });
+</script>
+
+</body>
+</html>

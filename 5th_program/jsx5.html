@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Name Application</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #fff7ed;
+            text-align: center;
+        }
+
+        .card {
+            background: white;
+            width: 350px;
+            margin: 80px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #aaa;
+        }
+
+        input {
+            padding: 10px;
+            width: 220px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #ea580c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+        }
+
+        h2 {
+            color: #ea580c;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+function Greeting() {
+
+    const [name, setName] = React.useState("");
+
+    return (
+        <div className="card">
+
+            <h2>Greeting Application</h2>
+
+            <input
+                type="text"
+                placeholder="Enter your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+            />
+
+            <p>
+                {name ? `Hello, ${name}!` : "Enter your name"}
+            </p>
+
+            <button onClick={() => setName("")}>
+                Clear
+            </button>
+
+        </div>
+    );
+}
+
+function App() {
+
+    return (
+        <div>
+            <h1>React Functional Component</h1>
+            <Greeting />
+        </div>
+    );
+}
+
+const root = ReactDOM.createRoot(
+    document.getElementById("root")
+);
+
+root.render(<App />);
+
+</script>
+
+</body>
+</html>

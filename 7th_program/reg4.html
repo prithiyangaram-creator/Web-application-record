@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>React User Registration</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #ecfdf5;
+    }
+
+    .container {
+      width: 400px;
+      margin: 40px auto;
+      padding: 25px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 3px 15px #aaa;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 15px;
+      box-sizing: border-box;
+    }
+
+    .radio {
+      width: auto;
+      margin-right: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #059669;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      background: #d1fae5;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+function App() {
+
+  const [form, setForm] = React.useState({
+    name: "",
+    email: "",
+    gender: "",
+    country: "",
+    skill: ""
+  });
+
+  const [submitted, setSubmitted] = React.useState(false);
+
+  function handleChange(e) {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setSubmitted(true);
+  }
+
+  return (
+    <div className="container">
+
+      <h2>User Registration</h2>
+
+      <form onSubmit={handleSubmit}>
+
+        <label>Name</label>
+        <input
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          placeholder="Enter name"
+        />
+
+        <label>Email</label>
+        <input
+          type="email"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+          placeholder="Enter email"
+        />
+
+        <label>Gender</label>
+
+        <input
+          className="radio"
+          type="radio"
+          name="gender"
+          value="Male"
+          onChange={handleChange}
+        />
+        Male
+
+        <input
+          className="radio"
+          type="radio"
+          name="gender"
+          value="Female"
+          onChange={handleChange}
+        />
+        Female
+
+        <br /><br />
+
+        <label>Country</label>
+
+        <select
+          name="country"
+          value={form.country}
+          onChange={handleChange}
+        >
+          <option value="">Select Country</option>
+          <option value="India">India</option>
+          <option value="USA">USA</option>
+          <option value="UK">UK</option>
+          <option value="Canada">Canada</option>
+        </select>
+
+        <label>Skill</label>
+
+        <select
+          name="skill"
+          value={form.skill}
+          onChange={handleChange}
+        >
+          <option value="">Select Skill</option>
+          <option value="React">React</option>
+          <option value="JavaScript">JavaScript</option>
+          <option value="Python">Python</option>
+          <option value="Java">Java</option>
+        </select>
+
+        <button type="submit">
+          Register
+        </button>
+
+      </form>
+
+      {submitted && (
+        <div className="result">
+          <b>Registration Details</b>
+          <p>Name: {form.name}</p>
+          <p>Email: {form.email}</p>
+          <p>Gender: {form.gender}</p>
+          <p>Country: {form.country}</p>
+          <p>Skill: {form.skill}</p>
+        </div>
+      )}
+
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root"))
+  .render(<App />);
+
+</script>
+
+</body>
+</html>

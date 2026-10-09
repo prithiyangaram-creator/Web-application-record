@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple React Registration</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #eef2ff;
+    }
+
+    .form-box {
+      width: 350px;
+      margin: 60px auto;
+      padding: 25px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px #aaa;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 15px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #4f46e5;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+    }
+
+    .success {
+      color: green;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+function App() {
+
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [error, setError] = React.useState("");
+  const [success, setSuccess] = React.useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (name === "" || email === "") {
+      setError("All fields are required");
+      setSuccess("");
+      return;
+    }
+
+    setError("");
+    setSuccess("Registration Successful!");
+  }
+
+  return (
+    <div className="form-box">
+      <h2>Registration</h2>
+
+      <form onSubmit={handleSubmit}>
+
+        <label>Name</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Enter name"
+        />
+
+        <label>Email</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter email"
+        />
+
+        {error && <p className="error">{error}</p>}
+
+        <button type="submit">Register</button>
+
+        {success && <p className="success">{success}</p>}
+
+      </form>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root"))
+  .render(<App />);
+
+</script>
+
+</body>
+</html>

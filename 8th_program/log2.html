@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple React Login</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #e0f2fe;
+    }
+
+    .box {
+      width: 350px;
+      margin: 100px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px gray;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0284c7;
+    }
+
+    input,
+    button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+
+    input {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background: #0284c7;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0369a1;
+    }
+
+    .success {
+      text-align: center;
+      color: green;
+    }
+
+    .error {
+      text-align: center;
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    function Login() {
+
+      const [username, setUsername] = React.useState("");
+      const [password, setPassword] = React.useState("");
+      const [message, setMessage] = React.useState("");
+      const [success, setSuccess] = React.useState(false);
+
+      function login(e) {
+        e.preventDefault();
+
+        if (username === "" || password === "") {
+          setMessage("Please enter username and password.");
+          setSuccess(false);
+          return;
+        }
+
+        if (username === "admin" && password === "12345") {
+          setMessage("Login Successful!");
+          setSuccess(true);
+        } else {
+          setMessage("Invalid Username or Password!");
+          setSuccess(false);
+        }
+      }
+
+      return (
+        <div className="box">
+
+          <h2>Login Form</h2>
+
+          <form onSubmit={login}>
+
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <button type="submit">
+              Login
+            </button>
+
+          </form>
+
+          {message && (
+            <p className={success ? "success" : "error"}>
+              {message}
+            </p>
+          )}
+
+        </div>
+      );
+    }
+
+    function App() {
+      return <Login />;
+    }
+
+    const root = ReactDOM.createRoot(
+      document.getElementById("root")
+    );
+
+    root.render(<App />);
+
+  </script>
+
+</body>
+</html>
+

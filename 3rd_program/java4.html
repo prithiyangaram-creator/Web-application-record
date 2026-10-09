@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Form Validation</title>
+
+    <style>
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+    </style>
+
+    <script>
+        function checkEmail() {
+
+            let email = document.getElementById("email").value;
+            let message = document.getElementById("emailMsg");
+
+            if (email == "") {
+                message.innerHTML = "Email is required";
+                message.className = "error";
+            }
+            else if (!email.includes("@")) {
+                message.innerHTML = "Invalid email";
+                message.className = "error";
+            }
+            else {
+                message.innerHTML = "Valid email";
+                message.className = "success";
+            }
+        }
+
+        function checkPassword() {
+
+            let password =
+                document.getElementById("password").value;
+
+            let message =
+                document.getElementById("passwordMsg");
+
+            if (password.length < 6) {
+                message.innerHTML =
+                    "Password must contain 6 characters";
+                message.className = "error";
+            }
+            else {
+                message.innerHTML = "Strong password";
+                message.className = "success";
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <h2>Login Form</h2>
+
+    Email:
+    <input type="text" id="email" onkeyup="checkEmail()">
+    <span id="emailMsg"></span>
+
+    <br><br>
+
+    Password:
+    <input type="password"
+           id="password"
+           onkeyup="checkPassword()">
+    <span id="passwordMsg"></span>
+
+    <br><br>
+
+    <button>Login</button>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>React Course App</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #ecfdf5;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .card {
+      background: white;
+      width: 400px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      color: #059669;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    .marks {
+      font-size: 35px;
+      font-weight: bold;
+      color: #059669;
+    }
+
+    button {
+      padding: 10px 18px;
+      margin: 5px;
+      border: none;
+      border-radius: 6px;
+      background-color: #059669;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #047857;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+function Course(props) {
+
+  const [marks, setMarks] = React.useState(50);
+
+  function increaseMarks() {
+    if (marks < 100) {
+      setMarks(marks + 5);
+    }
+  }
+
+  function decreaseMarks() {
+    if (marks > 0) {
+      setMarks(marks - 5);
+    }
+  }
+
+  function resetMarks() {
+    setMarks(50);
+  }
+
+  return (
+    <div className="card">
+
+      <h2>Course Information</h2>
+
+      <p><b>Student:</b> {props.student}</p>
+      <p><b>Course:</b> {props.course}</p>
+      <p><b>Duration:</b> {props.duration}</p>
+
+      <hr/>
+
+      <h2>Marks</h2>
+
+      <p className="marks">{marks}</p>
+
+      <button onClick={increaseMarks}>
+        Increase
+      </button>
+
+      <button onClick={decreaseMarks}>
+        Decrease
+      </button>
+
+      <button onClick={resetMarks}>
+        Reset
+      </button>
+
+    </div>
+  );
+}
+
+function App() {
+
+  return (
+    <div>
+
+      <h1>React Course App</h1>
+
+      <Course
+        student="Priya"
+        course="Web Development"
+        duration="6 Months"
+      />
+
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root")
+);
+
+root.render(<App/>);
+
+</script>
+
+</body>
+</html>
